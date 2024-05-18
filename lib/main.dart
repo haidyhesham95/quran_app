@@ -82,7 +82,7 @@ class MyAppView extends StatelessWidget {
           darkTheme: ThemeData.dark(),
           routes: {
             'quranPage': (context) => QuranPage(),
-            'ahadyth': (context) => Ahadyth(),
+            'ahadyth': (context) => Hadith(),
             'prayerTime': (context) => PrayerTimePage(),
             'alsibaha': (context) => Alsibaha(),
             'recitationsPage': (context) => RecitationsPage(),

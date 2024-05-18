@@ -7,8 +7,8 @@ import '../../../const/widgets/list_item.dart';
 import '../widget/hadyth_details.dart';
 import '../widget/listttt.dart';
 
-class Ahadyth extends StatelessWidget {
-   Ahadyth({super.key,});
+class Hadith extends StatelessWidget {
+const Hadith({super.key,});
 
    @override
   Widget build(BuildContext context) {
