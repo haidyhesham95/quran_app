@@ -2,7 +2,7 @@
 class Assets {
   Assets._();
 
-  static const String audio = 'assets/audio/audio.mp3';
+  static const String assetsAudio = 'assets/audio.mp3';
   static const String hadethH1 = 'assets/hadeth/h1.txt';
   static const String hadethH10 = 'assets/hadeth/h10.txt';
   static const String hadethH11 = 'assets/hadeth/h11.txt';
@@ -57,10 +57,14 @@ class Assets {
   static const String images2 = 'assets/images/2.png';
   static const String images3 = 'assets/images/3.png';
   static const String images5 = 'assets/images/5.png';
+  static const String images65 = 'assets/images/65.jpg';
+  static const String imagesCover1 = 'assets/images/cover1.png';
   static const String imagesEvening = 'assets/images/evening.png';
+  static const String imagesGround = 'assets/images/ground.png';
   static const String imagesIconn = 'assets/images/iconn.png';
   static const String imagesMoon = 'assets/images/moon.png';
   static const String imagesSplash = 'assets/images/Splash.png';
+  static const String myQuranAssetsAudio = 'assets/audio.mp3';
   static const String quranFiles1 = 'assets/quran_files/1.txt';
   static const String quranFiles10 = 'assets/quran_files/10.txt';
   static const String quranFiles100 = 'assets/quran_files/100.txt';
