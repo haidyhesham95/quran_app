@@ -1,8 +1,7 @@
 import 'dart:convert';
-import 'package:http/http.dart'as http;
+import 'package:http/http.dart' as http;
 import 'dart:io';
 import 'package:intl/intl.dart';
-
 
 class PrayerTimesModel {
   final String fajr;
@@ -14,9 +13,9 @@ class PrayerTimesModel {
   final String isha;
   final String imsak;
   final String midnight;
-  final String Firstthird;
+  final String firstThird;
 
-  PrayerTimesModel( {
+  PrayerTimesModel({
     required this.fajr,
     required this.sunrise,
     required this.dhuhr,
@@ -26,7 +25,7 @@ class PrayerTimesModel {
     required this.isha,
     required this.imsak,
     required this.midnight,
-    required this.Firstthird,
+    required this.firstThird,
   });
 
   factory PrayerTimesModel.fromJson(Map<String, dynamic> json) {
@@ -40,26 +39,18 @@ class PrayerTimesModel {
       isha: json['Isha'],
       imsak: json['Imsak'],
       midnight: json['Midnight'],
-      Firstthird: json['Firstthird'],
+      firstThird: json['Firstthird'],
     );
   }
 }
 
-
-
-
-
-
 class PrayerTimeApiService {
-
-  static const String _apiBaseUrl = "https://api.aladhan.com/v1/timingsByAddress";
-  static String getApiUrl() => "$_apiBaseUrl/$DateFormat('yyyy-MM-dd')?address=cairo";
-
-
+  static const String _apiBaseUrl =
+      "https://api.aladhan.com/v1/timingsByAddress";
+  static String getApiUrl() =>
+      "$_apiBaseUrl/$DateFormat('yyyy-MM-dd')?address=cairo";
 
   static Future<PrayerTimesModel> getPrayerTimes() async {
-
-
     final String apiUrl = getApiUrl();
 
     try {

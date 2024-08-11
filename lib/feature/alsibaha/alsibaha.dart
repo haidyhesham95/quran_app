@@ -1,23 +1,22 @@
-import 'dart:math';
+// import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:my_quran/Const/styels.dart';
 
 import '../../Const/colors.dart';
 import '../../const/widgets/app_bar_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:my_quran/Const/styels.dart';
+// import 'package:flutter/material.dart';
+// import 'package:my_quran/Const/styels.dart';
 
-import '../../Const/colors.dart';
-import '../../const/widgets/app_bar_widget.dart';
-import 'dart:math';
+// import '../../Const/colors.dart';
+// import '../../const/widgets/app_bar_widget.dart';
+// import 'dart:math';
 
-import 'package:flutter/material.dart';
-import 'dart:math';
-
+// import 'package:flutter/material.dart';
+// import 'dart:math';
 
 class Alsibaha extends StatefulWidget {
-  Alsibaha({super.key});
+  const Alsibaha({super.key});
 
   @override
   State<Alsibaha> createState() => _AlsibahaState();
@@ -40,7 +39,7 @@ class _AlsibahaState extends State<Alsibaha> {
     final containerSize = size.height * 0.40;
 
     return Scaffold(
-      appBar:appbarWidget(context, 'المسبحه الالكترونيه'),
+      appBar: appbarWidget(context, 'المسبحه الالكترونيه'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -64,14 +63,13 @@ class _AlsibahaState extends State<Alsibaha> {
                       color: kGreen.withOpacity(0.4),
                       shape: BoxShape.circle,
                     ),
-                    child:  Center(
-              child: Text(
-              "$count",
-                textAlign: TextAlign.center,
-                style: Styles.textStyle40,
-              )),
+                    child: Center(
+                        child: Text(
+                      "$count",
+                      textAlign: TextAlign.center,
+                      style: Styles.textStyle40,
+                    )),
                   ),
-
                 ],
               ),
             ),
@@ -84,7 +82,6 @@ class _AlsibahaState extends State<Alsibaha> {
       ),
     );
   }
-
 
   void addTasbeh() {
     setState(() {
@@ -118,8 +115,9 @@ class DashedBorderPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final double dashWidth = 6.0; // Adjust this to change the dash width
-    final double dashSpace = 25.0; // Adjust this to change the space between dashes
+    const double dashWidth = 6.0; // Adjust this to change the dash width
+    const double dashSpace =
+        25.0; // Adjust this to change the space between dashes
     final double radius = size.width / 2;
 
     final Paint paint = Paint()
@@ -143,8 +141,3 @@ class DashedBorderPainter extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
-
-
-
-
-

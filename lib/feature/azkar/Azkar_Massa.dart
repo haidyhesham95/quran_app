@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 
-import '../../Const/styels.dart';
-import '../../Const/colors.dart';
+// import '../../Const/styels.dart';
+// import '../../Const/colors.dart';
 import 'Map.dart';
 import 'item_data.dart';
 

@@ -2,14 +2,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_quran/Const/Styels.dart';
-import 'dart:math';
+// import 'dart:math';
 
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:my_quran/const/Bloc/theme_cubit.dart';
 import 'package:my_quran/feature/home/view/home_page.dart';
-import 'package:workmanager/workmanager.dart';
-
-import 'Const/static.dart';
+// import 'package:workmanager/workmanager.dart';
 
 // FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 //
@@ -59,45 +57,44 @@ import 'Const/static.dart';
 //   });
 // }
 
-
 class Splash extends StatefulWidget {
-  const Splash({Key? key}) : super(key: key);
+  const Splash({super.key});
 
   @override
-  _SplashState createState() => _SplashState();
+  State<Splash> createState() => _SplashState();
 }
 
 class _SplashState extends State<Splash> {
   @override
   void initState() {
-
-
-    Future.delayed(Duration(seconds: 3) ,(){
-      Navigator.pushReplacement(context, MaterialPageRoute(
-          builder:(_) => HomePage()
-      ));
+    Future.delayed(const Duration(seconds: 3), () {
+      if (mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (_) => const HomePage(),
+          ),
+        );
+      }
     });
 
     super.initState();
-
   }
 
   @override
   Widget build(BuildContext context) {
     final brightness = MediaQuery.of(context).platformBrightness;
     context.read<ThemeCubit>().setTheme(
-      brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light,
-    );    return Scaffold(
-
+          brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light,
+        );
+    return Scaffold(
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Image.asset(
-                'assets/images/Splash.png'
-            ),
-            Text('القرآن الكريم',style:Styles.textStyle38)
+            Image.asset('assets/images/Splash.png'),
+            Text('القرآن الكريم', style: Styles.textStyle38)
           ],
         ),
       ),

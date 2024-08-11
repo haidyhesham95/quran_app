@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Positioned audioContainer(context, Widget? child) {
@@ -7,7 +6,7 @@ Positioned audioContainer(context, Widget? child) {
       left: 0,
       right: 0,
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.black54,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(15),

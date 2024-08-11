@@ -3,17 +3,18 @@ import 'package:hijri/hijri_calendar.dart';
 
 import '../../../Const/styels.dart';
 
-Text hijriText( {TextStyle? style}) {
+Text hijriText({TextStyle? style}) {
   final DateTime now = DateTime.now();
 
   final hijriCalendar = HijriCalendar.fromDate(now);
   final String formattedHijriDate =
       '${_getArabicNumber(hijriCalendar.hDay)} ${_getArabicMonthName(hijriCalendar.hMonth)} ${_getArabicNumber(hijriCalendar.hYear)} هـ';
-  return  Text(
+  return Text(
     formattedHijriDate,
-    style:style?? Styles.text22,
+    style: style ?? Styles.text22,
   );
 }
+
 String _getArabicNumber(int number) {
   final arabicNumbersMap = {
     0: '٠',
@@ -30,9 +31,9 @@ String _getArabicNumber(int number) {
 
   final List<String> digits = number.toString().split('');
   String arabicNumber = '';
-  digits.forEach((digit) {
+  for (var digit in digits) {
     arabicNumber += arabicNumbersMap[int.parse(digit)] ?? digit;
-  });
+  }
   return arabicNumber;
 }
 

@@ -16,7 +16,7 @@ class SoundModel {
   factory SoundModel.fromJson(Map<String, dynamic> json) {
     return SoundModel(
       id: json['id'],
-      audioUrl: json['audio_url'] != null ? json['audio_url'].toString() : null,
+      audioUrl: json['audio_url']?.toString(),
     );
   }
 

@@ -1,14 +1,14 @@
-
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:my_quran/Splash.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+// import 'package:permission_handler/permission_handler.dart';
 import 'package:workmanager/workmanager.dart';
+
+import 'package:my_quran/splash.dart';
 
 import 'Const/static.dart';
 import 'const/Bloc/theme_cubit.dart';
@@ -18,10 +18,10 @@ import 'feature/alsibaha/alsibaha.dart';
 import 'feature/audio/pages/recitations.dart';
 import 'feature/azkar/azkar.dart';
 import 'feature/prayer_time/view/prayer_time_view.dart';
-import 'feature/quran/view/Quran.dart';
+import 'feature/quran/view/quran.dart';
 import 'feature/quran/widget/quran_details_screen.dart';
 
-
+import 'package:permission_handler/permission_handler.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,9 +30,12 @@ void main() async {
   await Permission.storage.request();
   await Permission.notification.request();
 
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-  var initializationSettingsAndroid = AndroidInitializationSettings('@mipmap/ic_launcher');
-  var initializationSettings = InitializationSettings(android: initializationSettingsAndroid);
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+  var initializationSettingsAndroid =
+      const AndroidInitializationSettings('@mipmap/ic_launcher');
+  var initializationSettings =
+      InitializationSettings(android: initializationSettingsAndroid);
   await flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
   Workmanager().initialize(callbackDispatcher, isInDebugMode: false);
@@ -40,28 +43,28 @@ void main() async {
   Workmanager().registerPeriodicTask(
     "1",
     "periodicNotification",
-    frequency: Duration(minutes: 30),
+    frequency: const Duration(minutes: 30),
   );
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => ThemeCubit(),
-      child: MyAppView(),
+      child: const MyAppView(),
     );
   }
 }
 
 class MyAppView extends StatelessWidget {
-  const MyAppView({Key? key}) : super(key: key);
+  const MyAppView({super.key});
 
   @override
-
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeCubit, ThemeState>(
@@ -81,16 +84,17 @@ class MyAppView extends StatelessWidget {
           theme: ThemeData.light(),
           darkTheme: ThemeData.dark(),
           routes: {
-            'quranPage': (context) => QuranPage(),
-            'ahadyth': (context) => Hadith(),
-            'prayerTime': (context) => PrayerTimePage(),
-            'alsibaha': (context) => Alsibaha(),
-            'recitationsPage': (context) => RecitationsPage(),
+            'quranPage': (context) => const QuranPage(),
+            'ahadyth': (context) => const Hadith(),
+            'prayerTime': (context) => const PrayerTimePage(),
+            'alsibaha': (context) => const Alsibaha(),
+            'recitationsPage': (context) => const RecitationsPage(),
             'azkar': (context) => Azkar(context: context),
-            HadythDetails.routeName: (context) => HadythDetails(),
-            QuranDetailsScreen.routeName: (context) => QuranDetailsScreen(),
+            HadythDetails.routeName: (context) => const HadythDetails(),
+            QuranDetailsScreen.routeName: (context) =>
+                const QuranDetailsScreen(),
           },
-          home: Splash(),
+          home: const Splash(),
         );
       },
     );
@@ -104,16 +108,20 @@ void callbackDispatcher() {
   });
 }
 
-Future<void> showNotification() async  {
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+Future<void> showNotification() async {
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
 
-  var initializationSettingsAndroid = AndroidInitializationSettings('@mipmap/ic_launcher');
-  var initializationSettings = InitializationSettings(android: initializationSettingsAndroid);
+  var initializationSettingsAndroid =
+      const AndroidInitializationSettings('@mipmap/ic_launcher');
+  var initializationSettings =
+      InitializationSettings(android: initializationSettingsAndroid);
   await flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
   int rndmIndex = Random().nextInt(StaticVars().smallDo3a2.length - 1);
 
-  AndroidNotificationDetails androidPlatformChannelSpecifics = AndroidNotificationDetails(
+  AndroidNotificationDetails androidPlatformChannelSpecifics =
+      AndroidNotificationDetails(
     '$rndmIndex.0',
     'تطبيق المسلم',
     importance: Importance.max,
@@ -133,5 +141,3 @@ Future<void> showNotification() async  {
     platformChannelSpecifics,
   );
 }
-
-

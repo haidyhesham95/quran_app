@@ -1,11 +1,10 @@
 import 'dart:async';
 
-import 'package:timezone/data/latest.dart' as tz;
-
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:timezone/timezone.dart' as tz;
-
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class LocalNotificationServicePrayerTime {
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -19,7 +18,7 @@ class LocalNotificationServicePrayerTime {
 
     const AndroidInitializationSettings androidInitializationSettings =
         AndroidInitializationSettings('@mipmap/ic_launcher');
-    final InitializationSettings initializationSettings =
+    const InitializationSettings initializationSettings =
         InitializationSettings(android: androidInitializationSettings);
 
     await flutterLocalNotificationsPlugin.initialize(
@@ -31,7 +30,7 @@ class LocalNotificationServicePrayerTime {
     _prefs = await SharedPreferences.getInstance();
   }
 
- static Future<void> showPrayerTimeNotification(
+  static Future<void> showPrayerTimeNotification(
       String label, String time, String message) async {
     try {
       final AndroidNotificationDetails androidPlatformChannelSpecifics =
@@ -62,6 +61,7 @@ class LocalNotificationServicePrayerTime {
         message,
         _nextInstanceOfPrayerTime(hour, minute),
         platformChannelSpecifics,
+        // ignore: deprecated_member_use
         androidAllowWhileIdle: true,
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,
@@ -71,7 +71,7 @@ class LocalNotificationServicePrayerTime {
 
       await _prefs.setInt(_notificationIdKey, notificationId);
     } catch (e) {
-      print('Error showing notification: $e');
+      debugPrint('Error showing notification: $e');
     }
   }
 

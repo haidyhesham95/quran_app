@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:just_audio/just_audio.dart';
@@ -8,23 +7,25 @@ import 'package:rxdart/rxdart.dart';
 import '../../../Const/styels.dart';
 import '../../../Const/colors.dart';
 import '../../../const/widgets/app_bar_widget.dart';
-import '../../Quran/widget/List.dart';
+import '../../Quran/widget/quran_details_list.dart';
 import '../model/quran_audio.dart';
 import '../widget/audio_container.dart';
 import '../widget/audio_player_service.dart';
 import '../widget/position_data.dart';
 import '../widget/progress.dart';
 
-
-
 class ReciterSurahsPage extends StatefulWidget {
   final String reciterId;
   final String appBarText;
 
-  const ReciterSurahsPage({Key? key, required this.reciterId, required this.appBarText}) : super(key: key);
+  const ReciterSurahsPage({
+    super.key,
+    required this.reciterId,
+    required this.appBarText,
+  });
 
   @override
-  _ReciterSurahsPageState createState() => _ReciterSurahsPageState();
+  State<ReciterSurahsPage> createState() => _ReciterSurahsPageState();
 }
 
 class _ReciterSurahsPageState extends State<ReciterSurahsPage> {
@@ -35,7 +36,7 @@ class _ReciterSurahsPageState extends State<ReciterSurahsPage> {
       _audioPlayer.positionStream,
       _audioPlayer.bufferedPositionStream,
       _audioPlayer.durationStream,
-          (position, bufferedPosition, duration) => PositionData(
+      (position, bufferedPosition, duration) => PositionData(
           position: position,
           duration: duration ?? Duration.zero,
           bufferedPosition: bufferedPosition));
@@ -43,7 +44,8 @@ class _ReciterSurahsPageState extends State<ReciterSurahsPage> {
   @override
   void initState() {
     super.initState();
-    _audioPlayer = AudioPlayerService().audioPlayer; // Access the singleton instance of AudioPlayer
+    _audioPlayer = AudioPlayerService()
+        .audioPlayer; // Access the singleton instance of AudioPlayer
     _surahsAudioFuture = fetchSurahsAudio(widget.reciterId);
   }
 
@@ -55,7 +57,7 @@ class _ReciterSurahsPageState extends State<ReciterSurahsPage> {
         future: _surahsAudioFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(
                 color: kGreen,
               ),
@@ -63,7 +65,12 @@ class _ReciterSurahsPageState extends State<ReciterSurahsPage> {
           } else if (snapshot.hasError) {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: Center(child: Text('حدث خطأ أثناء التحميل تأكَّد من اتصال الجهاز  بشبكة Wi-Fi ',style:Styles.text30 ,textAlign: TextAlign.center,)),
+              child: Center(
+                  child: Text(
+                'حدث خطأ أثناء التحميل تأكَّد من اتصال الجهاز  بشبكة Wi-Fi ',
+                style: Styles.text30,
+                textAlign: TextAlign.center,
+              )),
             );
           } else {
             // Data loaded successfully
@@ -71,18 +78,17 @@ class _ReciterSurahsPageState extends State<ReciterSurahsPage> {
             return Stack(
               children: [
                 ListView.builder(
-                  padding: const EdgeInsets.only(top: 20,bottom: 200),
+                  padding: const EdgeInsets.only(top: 20, bottom: 200),
                   itemCount: audio.length,
                   itemBuilder: (context, index) {
                     final audioUrl = audio[index].audioUrl;
-                    final id = audio[index].id.toString();
+                    // final id = audio[index].id.toString();
 
                     return InkWell(
                       onTap: () {
                         _audioPlayer.setUrl(audioUrl!); // Set audio URL
                         _audioPlayer.play();
                       },
-
                       child: SizedBox(
                         height: 80,
                         child: Card(
@@ -91,7 +97,10 @@ class _ReciterSurahsPageState extends State<ReciterSurahsPage> {
                           child: Center(
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 10),
-                              child: Text("سورة${quranDetails[index]['name']}",style: Styles.textStyle25,),
+                              child: Text(
+                                "سورة${quranDetails[index]['name']}",
+                                style: Styles.textStyle25,
+                              ),
                             ),
                           ),
                         ),
@@ -99,20 +108,23 @@ class _ReciterSurahsPageState extends State<ReciterSurahsPage> {
                     );
                   },
                 ),
-                   audioContainer(context,
-                     Column(
-                      children: [
-                        SizedBox(height: 10),
-                        Controls(audioPlayer: _audioPlayer), // Add Controls widget here
-                        Padding(
-                          padding: const EdgeInsets.all(15),
-                          child: buildProgressBar( _audioPlayer, positionDataStream),
-                        ),
-                        SizedBox(height: 20)
-                      ],
-                    ),
+                audioContainer(
+                  context,
+                  Column(
+                    children: [
+                      const SizedBox(height: 10),
+                      Controls(
+                          audioPlayer:
+                              _audioPlayer), // Add Controls widget here
+                      Padding(
+                        padding: const EdgeInsets.all(15),
+                        child:
+                            buildProgressBar(_audioPlayer, positionDataStream),
+                      ),
+                      const SizedBox(height: 20)
+                    ],
                   ),
-
+                ),
               ],
             );
           }
@@ -120,13 +132,12 @@ class _ReciterSurahsPageState extends State<ReciterSurahsPage> {
       ),
     );
   }
-
 }
 
 class Controls extends StatelessWidget {
   final AudioPlayer audioPlayer;
 
-  const Controls({Key? key, required this.audioPlayer}) : super(key: key);
+  const Controls({super.key, required this.audioPlayer});
 
   @override
   Widget build(BuildContext context) {
@@ -186,6 +197,3 @@ class Controls extends StatelessWidget {
     );
   }
 }
-
-
-
