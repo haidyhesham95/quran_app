@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../Const/colors.dart';
-import 'azkar.dart';
+import '../../../Const/colors.dart';
+import '../view/azkar_view.dart';
 
 Widget buildItem(CategoryItem item, context) {
   return GestureDetector(

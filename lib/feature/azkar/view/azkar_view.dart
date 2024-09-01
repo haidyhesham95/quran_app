@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:my_quran/feature/azkar/widget/item_data.dart';
 
-import 'package:my_quran/const/widgets/app_bar_widget.dart';
-import 'package:my_quran/feature/azkar/ad3yia_a.dart';
-import 'package:my_quran/feature/azkar/build_item.dart';
-import '../../generated/assets.dart';
-import 'Ad3yia_Q.dart';
-import 'Azkar_Astikaz.dart';
-import 'Azkar_Massa.dart';
-import 'Azkar_Noom.dart';
-import 'Azkar_Saba7.dart';
 
-class Azkar extends StatelessWidget {
+import '../../../const/widgets/app_bar_widget.dart';
+import '../../../generated/assets.dart';
+import '../widget/build_item.dart';
+
+
+class AzkarView extends StatelessWidget {
   final BuildContext context;
   final List<CategoryItem> categories;
 
-  Azkar({
+  AzkarView({
     super.key,
     required this.context,
   }) : categories = [
@@ -23,7 +20,7 @@ class Azkar extends StatelessWidget {
             image: Assets.images1,
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const AzkarSaba7()));
+                  MaterialPageRoute(builder: (context) => const ItemData(name: 'أذكار الصباح')));
             },
           ),
           CategoryItem(
@@ -33,7 +30,7 @@ class Azkar extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const AzkarAstikaz()));
+                      builder: (context) => const ItemData(name: 'أذكار الاستيقاظ')));
             },
           ),
           CategoryItem(
@@ -41,7 +38,7 @@ class Azkar extends StatelessWidget {
             image: Assets.imagesMoon,
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const AzkarNoom()));
+                  MaterialPageRoute(builder: (context) => const ItemData(name: 'أذكار النوم')));
             },
           ),
           CategoryItem(
@@ -49,7 +46,7 @@ class Azkar extends StatelessWidget {
             image: Assets.imagesEvening,
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const AzkarMassa()));
+                  MaterialPageRoute(builder: (context) => const ItemData(name: 'أذكار المساء')));
             },
           ),
           CategoryItem(
@@ -57,7 +54,7 @@ class Azkar extends StatelessWidget {
             image: Assets.images5,
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const Ad3yiaA()));
+                  MaterialPageRoute(builder: (context) => const ItemData(name: 'أدعية الأنبياء')));
             },
           ),
           CategoryItem(
@@ -65,7 +62,7 @@ class Azkar extends StatelessWidget {
             image: Assets.images3,
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const Ad3yiaQ()));
+                  MaterialPageRoute(builder: (context) => const ItemData(name: 'أدعية قرآنية')));
             },
           ),
         ];

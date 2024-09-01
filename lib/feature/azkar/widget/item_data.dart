@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../Const/colors.dart';
-import '../../const/widgets/app_bar_widget.dart';
+import '../../../Const/colors.dart';
+import '../../../const/widgets/app_bar_widget.dart';
+import '../data/Map.dart';
 
 class ItemData extends StatelessWidget {
   const ItemData(
       {super.key,
-      required this.appText,
-      required this.itemCount,
-      required this.textData});
-  final String appText;
-  final int itemCount;
-  final List textData;
+      required this.name,
+      });
+  final String name;
+
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    List<dynamic>contentData=azkar[0][name];
+
 
     return Stack(
       children: [
@@ -28,7 +29,7 @@ class ItemData extends StatelessWidget {
         ),
         Scaffold(
           backgroundColor: Colors.transparent,
-          appBar: appbarWidget(context, appText,
+          appBar: appbarWidget(context, name,
               backgroundColor: Colors.transparent),
           body: Center(
             child: Container(
@@ -42,7 +43,7 @@ class ItemData extends StatelessWidget {
                   thickness: 1,
                   color: kGreen,
                 ),
-                itemCount: itemCount,
+                itemCount: contentData.length,
                 itemBuilder: (context, index) {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -51,7 +52,7 @@ class ItemData extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Text(
-                            textData[index]['content'],
+                            contentData[index]['content'],
                             style: GoogleFonts.amiriQuran(
                                 color: Colors.blueGrey.shade800,
                                 fontSize: 22,

@@ -16,7 +16,7 @@ import 'feature/ahadyth/view/ahadyth.dart';
 import 'feature/ahadyth/widget/hadyth_details.dart';
 import 'feature/alsibaha/alsibaha.dart';
 import 'feature/audio/pages/recitations.dart';
-import 'feature/azkar/azkar.dart';
+import 'feature/azkar/view/azkar_view.dart';
 import 'feature/prayer_time/view/prayer_time_view.dart';
 import 'feature/quran/view/quran.dart';
 import 'feature/quran/widget/quran_details_screen.dart';
@@ -89,7 +89,7 @@ class MyAppView extends StatelessWidget {
             'prayerTime': (context) => const PrayerTimePage(),
             'alsibaha': (context) => const Alsibaha(),
             'recitationsPage': (context) => const RecitationsPage(),
-            'azkar': (context) => Azkar(context: context),
+            'azkar': (context) => AzkarView(context: context),
             HadythDetails.routeName: (context) => const HadythDetails(),
             QuranDetailsScreen.routeName: (context) =>
                 const QuranDetailsScreen(),
